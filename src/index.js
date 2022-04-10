@@ -7,6 +7,14 @@ const port = 4000;
 const app = express();
 app.use(bodyParser.json());
 
+function errorHandler(err, req, res, next) {
+  if (res.headersSent) {
+    return next(err);
+  }
+  res.status(500);
+  res.render("error", { error: err });
+}
+
 async function init() {
   try {
     // @TODO Create a kitten array like addresses
@@ -30,7 +38,7 @@ async function init() {
         await newAddress.save();
         res.send(newAddress);
       } catch (err) {
-        res.json({ error: err.message });
+        res.status(500).json({ error: err.message });
         next(err);
       }
     });
