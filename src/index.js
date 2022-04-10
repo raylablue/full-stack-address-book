@@ -11,7 +11,6 @@ async function init() {
   try {
     // @TODO Create a kitten array like addresses
     // @TODO Move the kitten and address HTTP login into their own files
-    // @TODO make it so a failed HTTP POST does not crash the entire app with a zip as an array
     await mongoose.connect(
       "mongodb+srv://admin:admin@cluster0.ems6r.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
     );
@@ -25,10 +24,15 @@ async function init() {
       });
     });
 
-    app.post("/api/addresses", async (req, res) => {
-      const newAddress = new Address(req.body);
-      await newAddress.save();
-      res.send(newAddress);
+    app.post("/api/addresses", async (req, res, next) => {
+      try {
+        const newAddress = new Address(req.body);
+        await newAddress.save();
+        res.send(newAddress);
+      } catch (err) {
+        res.json({ error: err.message });
+        next(err);
+      }
     });
 
     app.listen(port, () => {
