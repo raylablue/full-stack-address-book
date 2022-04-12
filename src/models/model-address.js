@@ -1,5 +1,5 @@
 const createAddressModel = (mongoose) => {
-  const addressSchema = new mongoose.Schema({
+  const schema = new mongoose.Schema({
     name: String,
     address1: String,
     address2: String,
@@ -9,7 +9,19 @@ const createAddressModel = (mongoose) => {
     phone: String,
   });
 
-  return mongoose.model("Address", addressSchema);
+  schema.virtual("id").get(function () {
+    return this._id.toHexString();
+  });
+
+  schema.set("toJSON", {
+    virtuals: true,
+    transform: (doc, ret) => {
+      delete ret._id;
+      delete ret.__v;
+    },
+  });
+
+  return mongoose.model("Address", schema);
 };
 
 module.exports = {
