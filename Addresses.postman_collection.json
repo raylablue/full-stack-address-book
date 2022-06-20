@@ -1,0 +1,112 @@
+{
+  "info": {
+    "_postman_id": "a6ee6cc8-e78a-4257-ad2b-fd5aa8fac7e2",
+    "name": "Addresses",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "10761132"
+  },
+  "item": [
+    {
+      "name": "Get All Addresses",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:4000/api/addresses",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["api", "addresses"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Address",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"name\": \"Hello\",\n    \"address1\": \"Fail Street\",\n    \"address2\": \"apt# NaN\",\n    \"city\": \"Nopesville\",\n    \"state\": \"confusion\",\n    \"zip\": 12345,\n    \"phone\": \"925-2555-351\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:4000/api/addresses",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["api", "addresses"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Address Fail",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"zip\": []\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:4000/api/addresses",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["api", "addresses"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Address",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"name\": \"Updated\",\n    \"address1\": \"Change Ave\",\n    \"address2\": \"apt# 2\",\n    \"city\": \"Lantsville\",\n    \"state\": \"Cadence\",\n    \"zip\": 54321,\n    \"phone\": \"925-2555-351\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:4000/api/addresses/6250eb3bd4a15a4d0c139db0",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["api", "addresses", "6250eb3bd4a15a4d0c139db0"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Address",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:4000/api/addresses/6250eb3bd4a15a4d0c139db0",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["api", "addresses", "6250eb3bd4a15a4d0c139db0"]
+        }
+      },
+      "response": []
+    }
+  ]
+}

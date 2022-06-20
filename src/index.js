@@ -4,15 +4,15 @@ const mongoose = require("mongoose");
 const { createAddressModel } = require("./models/model-address");
 const { addressInit } = require("./endpoints/endpoint-addresses");
 
+const MONGODB_URL =
+  "mongodb+srv://admin:admin@cluster0.kp4cc.mongodb.net/?retryWrites=true&w=majority";
 const port = 4000;
 const app = express();
 app.use(bodyParser.json());
 
 async function init() {
   try {
-    await mongoose.connect(
-      "mongodb+srv://admin:admin@cluster0.ems6r.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
-    );
+    await mongoose.connect(MONGODB_URL);
     const Address = createAddressModel(mongoose);
 
     const router = addressInit(Address);
@@ -20,8 +20,7 @@ async function init() {
 
     app.listen(port, () => {
       console.log(
-        `Address Book server running at http://localhost:${port}/api/addresses`,
-        `Kittens can be found at http://localhost:${port}/api/kittens`
+        `Address Book server running at http://localhost:${port}/api/addresses`
       );
     });
   } catch (error) {
