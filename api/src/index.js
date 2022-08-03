@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const cors = require('cors');
 const mongoose = require("mongoose");
 const { createAddressModel } = require("./models/model-address");
 const { addressInit } = require("./endpoints/endpoint-addresses");
@@ -9,6 +10,7 @@ const MONGODB_URL =
 const port = 4000;
 const app = express();
 app.use(bodyParser.json());
+app.use(cors());
 
 async function init() {
   try {
