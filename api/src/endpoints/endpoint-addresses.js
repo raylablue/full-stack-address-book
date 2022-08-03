@@ -12,6 +12,13 @@ const addressInit = (AddressModel) => {
     });
   });
 
+  router.get(`${addressPath}/:id`, async (req, res) => {
+    const address = await AddressModel.findById(req.params.id);
+    await address.save();
+    
+    res.send(address);
+  })
+
   router.post(addressPath, async (req, res) => {
     try {
       const newAddress = new AddressModel(req.body);

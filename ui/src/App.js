@@ -1,14 +1,14 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import './App.css';
-import PageIndex from "./atomic-design/pages/PageIndex";
-import PageAddress from "./atomic-design/pages/PageAddress";
+import PageAddressList from "./atomic-design/pages/PageAddressList";
+import PageAddressIndividual from "./atomic-design/pages/PageAddressIndividual";
 
 function App() {
   return (
   <Routes>
-      <Route path="/" element={<PageIndex />} />
-      <Route path="address:id" element={<PageAddress />} />
+      <Route path="/" element={<PageAddressList />} />
+      <Route path="address/:id" element={<PageAddressIndividual />} />
   </Routes>
   );
 }

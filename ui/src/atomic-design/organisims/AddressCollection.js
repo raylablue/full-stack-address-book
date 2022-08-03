@@ -5,7 +5,7 @@ const AddressCollection = ({addressList}) => (
     <ul>
         {addressList.map(({name, id}) => {
             return <li key={id}>
-                <Link to={`address:${id}`}>
+                <Link to={`address/${id}`}>
                     {name}
                 </Link>
             </li>

@@ -2,8 +2,9 @@ import React, {useEffect, useState} from 'react';
 import AddressCollection from "../organisims/AddressCollection";
 import {Container} from "@mui/material";
 import { getAddresses } from "../../remote/remote-addresses";
+import AddressForm from "../molecules/AddressForm";
 
-const PageIndex = () => {
+const PageAddressList = () => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
@@ -15,9 +16,10 @@ const PageIndex = () => {
 
     return (
         <Container>
+            <AddressForm />
             <AddressCollection addressList={data} />
         </Container>
     );
 };
 
-export default PageIndex;
+export default PageAddressList;
