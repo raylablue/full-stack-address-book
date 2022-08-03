@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import {Container} from "@mui/material";
+import {Button, Container} from "@mui/material";
 import {getIndividualAddress} from "../../remote/remote-addresses";
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import AddressForm from "../molecules/AddressForm";
 
 const PageAddressIndividual = () => {
@@ -21,6 +21,9 @@ const PageAddressIndividual = () => {
     return (
         <Container>
             <AddressForm address={data}/>
+            <Button type="button"><Link to={`/`}>
+                Address List
+            </Link></Button>
         </Container>
     );
 };
