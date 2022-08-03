@@ -12,8 +12,11 @@ const PageAddressIndividual = () => {
         getIndividualAddress({id})
             .then((address) => {
                 setData(address.data)
+                console.log(data)
         })
-    }, []);
+    // if data is added to dependencies it has many needless re-renders
+    // eslint-disable-next-line
+    }, [id]);
 
     return (
         <Container>

@@ -6,6 +6,15 @@ import AddressForm from "../molecules/AddressForm";
 
 const PageAddressList = () => {
     const [data, setData] = useState([]);
+    const address = {
+        name: '',
+        address1: '',
+        address2: '',
+        city: '',
+        state: '',
+        zip: '',
+        phone: '',
+    }
 
     useEffect(() => {
         getAddresses()
@@ -16,7 +25,7 @@ const PageAddressList = () => {
 
     return (
         <Container>
-            <AddressForm />
+            <AddressForm address={address}/>
             <AddressCollection addressList={data} />
         </Container>
     );
