@@ -3,6 +3,7 @@ import {Button, Container} from "@mui/material";
 import {getIndividualAddress} from "../../remote/remote-addresses";
 import {Link, useParams} from "react-router-dom";
 import AddressForm from "../molecules/AddressForm";
+import ConfirmationDialog from "../molecules/ConfirmationDialog";
 
 const PageAddressIndividual = () => {
     const {id} = useParams();
@@ -12,7 +13,6 @@ const PageAddressIndividual = () => {
         getIndividualAddress({id})
             .then((address) => {
                 setData(address.data)
-                console.log(data)
         })
     // if data is added to dependencies it has many needless re-renders
     // eslint-disable-next-line
@@ -21,6 +21,7 @@ const PageAddressIndividual = () => {
     return (
         <Container>
             <AddressForm address={data}/>
+            <ConfirmationDialog id={id} />
             <Button type="button"><Link to={`/`}>
                 Address List
             </Link></Button>

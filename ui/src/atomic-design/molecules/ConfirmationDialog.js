@@ -27,7 +27,6 @@ const ConfirmationDialog = ({id}) => {
     const handleDelete = () => {
         setOpen(false);
         console.log('Deleted!', id)
-        // display message of successful delete and reroute to address list on delete
         deleteIndividualAddress({id})
         .then(() => navigate('/'));
     };

@@ -1,25 +1,19 @@
-import React, {useEffect, useMemo, useState} from 'react';
-import {Box, Button, TextField, Alert} from "@mui/material";
-import {deleteIndividualAddress} from "../../remote/remote-addresses";
-import {Link, useParams} from "react-router-dom";
-import ConfirmationDialog from "./ConfirmationDialog";
+import React, {useCallback, useEffect, useMemo, useState} from 'react';
+import { Box, Button, TextField } from "@mui/material";
+import SubmitButton from "../atoms/SubmitButton";
 
 const AddressForm = ({address}) => {
-    const {id} = useParams();
     const [form, setForm] = useState();
+    // const [formData, setFormData] = useState()
 
-    const onDelete = (e) => {
-        e.preventDefault();
-        window.alert("are you sure you would like to delete?")
-        console.log('deleted!', id);
-        // display message of successful delete and reroute to address list on delete
-        // deleteIndividualAddress({id})
-        // .then(() => console.log('delete successful');
-    };
+    const handleChange = useCallback((key, {target: value}) => {
+        const newForm = form ? {...form} : {};
+        newForm[key] = value;
+        setForm(newForm);
+    },[form]);
 
     useEffect(() => {
         setForm(address);
-
     }, [address]);
 
     const printForm = useMemo(() => {
@@ -29,41 +23,48 @@ const AddressForm = ({address}) => {
                     <TextField
                         label="Name"
                         defaultValue={form.name}
+                        onChange={(e) => {handleChange('name', e)}}
                         helperText="Name for the person associated with this address"
                     />
 
                     <TextField
                         label="Address 1"
                         defaultValue={form.address1}
+                        onChange={(e) => {handleChange('address1', e)}}
                         helperText="House number and street"
                     />
 
                     <TextField
                         label="Address 2"
                         defaultValue={form.address2}
+                        onChange={(e) => {handleChange('address2', e)}}
                         helperText="Apartment number"
                     />
 
                     <TextField
                         label="City"
                         defaultValue={form.city}
+                        onChange={(e) => {handleChange('city', e)}}
                     />
 
                     <TextField
                         label="State"
                         defaultValue={form.state}
+                        onChange={(e) => {handleChange('state', e)}}
                         helperText="State, provience, or territory"
                     />
 
                     <TextField
                         label="Zip"
                         defaultValue={form.zip}
+                        onChange={(e) => {handleChange('zip', e)}}
                         helperText="Zip or postal code"
                     />
 
                     <TextField
                         label="Phone"
                         defaultValue={form.phone}
+                        onChange={(e) => {handleChange('phone', e)}}
                     />
                 </>
             );
@@ -75,7 +76,8 @@ const AddressForm = ({address}) => {
     return (
         <Box component="form" marginTop={2}>
             {printForm}
-            <ConfirmationDialog id={id} />
+            <SubmitButton formData={form}/>
+            <Button onClick={() => {console.log('hit')}}>ButtonTest</Button>
         </Box>
     );
 };
