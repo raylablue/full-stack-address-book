@@ -2,9 +2,8 @@ import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import { Box, Button, TextField } from "@mui/material";
 import SubmitButton from "../atoms/SubmitButton";
 
-const AddressForm = ({address}) => {
+const AddressForm = ({address, id}) => {
     const [form, setForm] = useState();
-    // const [formData, setFormData] = useState()
 
     const handleChange = useCallback((key, {target: value}) => {
         const newForm = form ? {...form} : {};
@@ -14,7 +13,8 @@ const AddressForm = ({address}) => {
 
     useEffect(() => {
         setForm(address);
-    }, [address]);
+        console.log('address form, id', id);
+    }, [address, id]);
 
     const printForm = useMemo(() => {
         if (form) {
@@ -76,8 +76,7 @@ const AddressForm = ({address}) => {
     return (
         <Box component="form" marginTop={2}>
             {printForm}
-            <SubmitButton formData={form}/>
-            <Button onClick={() => {console.log('hit')}}>ButtonTest</Button>
+            <SubmitButton formData={form} id={id}/>
         </Box>
     );
 };

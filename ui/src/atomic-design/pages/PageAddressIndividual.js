@@ -20,7 +20,7 @@ const PageAddressIndividual = () => {
 
     return (
         <Container>
-            <AddressForm address={data}/>
+            <AddressForm address={data} id={id}/>
             <ConfirmationDialog id={id} />
             <Button type="button"><Link to={`/`}>
                 Address List

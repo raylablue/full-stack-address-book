@@ -23,3 +23,15 @@ export const createAddress = ({formData}) => {
         phone: formData.phone.value,
     })
 }
+
+export const updateAddress = ({formData, id}) => {
+    return axios.put(`http://localhost:4000/api/addresses/${id}`, {
+        name: formData.name.value,
+        address1: formData.address1.value,
+        address2: formData.address2.value,
+        city: formData.city.value,
+        state: formData.state.value,
+        zip: formData.zip.value,
+        phone: formData.phone.value,
+    })
+}
